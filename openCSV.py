@@ -3,8 +3,8 @@ import csv
 filename = input("Enter CSV filename: ")
 
 try:
-    with open(filename, "r") as csvfile:
-        reader = csv.reader(csvfile)
+    with open(filename, "r") as csvFile:
+        reader = csv.reader(csvFile)
         rows = list(reader)
 
         header = rows[0]
@@ -13,9 +13,8 @@ try:
         print("\n--- CSV SUMMARY ---")
         print(f"File name       : {filename}")
         print(f"Columns         : {len(header)}")
-        print(f"Column names    : {header}")
+        print(f"Columns names   : {header}")
         print(f"Total rows      : {len(data)}")
 
-except:
-    FileNotFoundError()
-    print("File not found")
+except FileNotFoundError:
+    print("file not found")
