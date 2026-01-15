@@ -2,3 +2,6 @@
 | ----------------------------- | ----------------------------- | ---------------- |
 | `any(condition for x in row)` | **At least one** item matches | Detect bad data  |
 | `all(condition for x in row)` | **Every** item matches        | Accept good data |
+
+
+CSV file -> clean mepty values -> format columns

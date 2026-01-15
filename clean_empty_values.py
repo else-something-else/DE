@@ -1,4 +1,5 @@
 import csv
+import re
 
 def clean_empty_values(filename):
     try:
@@ -28,16 +29,21 @@ def format_column_names(filename):
             reader = csv.reader(csvfile)
             rows = list(reader)
             header = rows[0]
+            data_rows = rows[1:]
 
-            cleaned_columns = []
+            cleaned_header = []
             for column in header:
                 #mystring.replace(" ", "_")
-                cleaned_columns.append(column.lower().replace(" ", "_").strip())
+                column = column.strip().lower() # trim + lowercase
+                column = column.replace(" ", "") # spaces to underscore
+                column = re.sub(r"[^\w]", "", column) # remove special chars
+                cleaned_header.append(column)
 
-        return cleaned_columns
+        return cleaned_header + data_rows
 
     except FileNotFoundError:
         print("File not found")
+        return []
 
 
 filename = "Heart_Disease_Prediction.csv"
