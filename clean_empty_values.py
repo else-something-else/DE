@@ -24,15 +24,15 @@ def clean_empty_values(filename):
 
 def format_column_names(filename):
     try:
-        with open(filename, "r") as csvfile:
+        with open(filename, "r", newline="") as csvfile:
             reader = csv.reader(csvfile)
             rows = list(reader)
             header = rows[0]
 
             cleaned_columns = []
-            if row in cleaned_columns:
-
-
+            for column in header:
+                #mystring.replace(" ", "_")
+                cleaned_columns.append(column.lower().replace(" ", "_").strip())
 
         return cleaned_columns
 
@@ -40,10 +40,9 @@ def format_column_names(filename):
         print("File not found")
 
 
-
 filename = "Heart_Disease_Prediction.csv"
-cleaned_data = clean_empty_values(filename)
+#cleaned_data = clean_empty_values(filename)
 formated_data = format_column_names(filename)
 
-print(cleaned_data)
+#print(cleaned_data)
 print(formated_data)
